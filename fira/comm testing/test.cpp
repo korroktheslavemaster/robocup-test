@@ -80,8 +80,12 @@ int main(int argc, char const *argv[])
 		char buf[12];
 		buf[0] = TEAM_ID;
 		for (int j = 0; j < 5; j++) {
-			buf[j*2+1] = -1;
-			buf[j*2+2] = -1;
+			buf[j*2+1] = i*j%50*(i<NUM_PACKETS/2?1:-1);
+			buf[j*2+2] = i*j%50*(i<NUM_PACKETS/2?1:-1);
+      if (i == NUM_PACKETS - 1) {
+        buf[j*2+1] = 0;
+        buf[j*2+2] = 0;
+      }
 		}
 		// buf[BOTID*2+1] = 25;
 		// buf[BOTID*2+2] = 50;
