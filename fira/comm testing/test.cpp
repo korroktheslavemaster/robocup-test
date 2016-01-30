@@ -76,7 +76,7 @@ int main(int argc, char const *argv[])
 	
 	bool ok = false;
 	int counter = 0;
-	for (int i = 0; i < NUM_PACKETS; i++) {
+	for (int i = 0; i < NUM_PACKETS || 1; i++) {
 		char buf[12];
 		buf[0] = TEAM_ID;
 		for (int j = 0; j < 5; j++) {
@@ -90,7 +90,8 @@ int main(int argc, char const *argv[])
 		// buf[BOTID*2+1] = 25;
 		// buf[BOTID*2+2] = 50;
 		buf[11] = (++counter)%100;
-		s.Write(buf, 12);
+    buf[0] = 'a';
+		s.Write(buf, 1);
 		usleep(20*1000);
 	}
   while (1) {
